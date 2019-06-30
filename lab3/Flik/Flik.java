@@ -4,3 +4,7 @@ public class Flik {
         return a == b;
     }
 }
+
+/**
+ * Integers from -128 to 127 are the same number
+ */

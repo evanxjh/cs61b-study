@@ -16,12 +16,16 @@ public class ArrayDeque<T> {
     public ArrayDeque(int Arrsize){
         items=(T[]) new Object[Arrsize];
         size=0;
+        head= (int) Math.floor(Arrsize/2);
+        tail=head+1;
     }
 
     /** create an ArrayDeque with default size */
     public ArrayDeque(){
         items=(T[]) new Object[Defaultsize];
         size=0;
+        head=(int) Math.floor(Defaultsize/2);
+        tail=head+1;
     }
 
     /** create a deep copy of another ArrayDeque */
@@ -93,7 +97,7 @@ public class ArrayDeque<T> {
      *  Once all the items have been printed, print out a new line.
      */
     public void printDeque(){
-        resize(items.length);
+        resize(items.length);                       //数组重新排列，从零号位置开始
         for (int i=0;i<size;i++){
             System.out.print(items[i]);
             System.out.print(" ");
@@ -141,18 +145,10 @@ public class ArrayDeque<T> {
      * If no such item exists, returns null. Must not alter the deque!
      */
     public T get(int index){
-        if (size==0 || index>size){
+        if (size==0 || index>=size){
             return null;
         }
-
-    }
-
-    /** Get the item with the recursion  */
-    public T getRecursive(int index){
-
-    }
-
-    public T getHelper(int index,StuffNode p){
-
+        resize(items.length);
+        return items[index-1];
     }
 }

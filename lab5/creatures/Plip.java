@@ -29,16 +29,44 @@ public class Plip extends Creature {
      * blue color.
      */
     private int b;
-
+    /**
+     * Units of energy losing after a MOVE action
+     */
+    private double MoveEnergyLose=0.15;
+    /**
+     * Units of energy gaining after a STAY action
+     */
+    private double StayEnergyGain=0.2;
+    /**
+     * Max energy of a Creature
+     */
+    private int MaxEnergy=2;
+    /**
+     * Min energy of a Creature
+     */
+    private int MinEnergy=0;
     /**
      * creates plip with energy equal to E.
      */
+    /**
+     * fraction of energy to retain when replicating.
+     */
+    private double repEnergyRetained = 0.5;
+    /**
+     * fraction of energy to bestow upon offspring.
+     */
+    private double repEnergyGiven = 0.5;
+
     public Plip(double e) {
         super("plip");
         r = 0;
         g = 0;
         b = 0;
-        energy = e;
+        if (e>MaxEnergy){
+            energy=MaxEnergy;
+        }else if (e<MinEnergy){
+            energy=MinEnergy;
+        }else  energy = e;
     }
 
     /**
@@ -57,7 +85,9 @@ public class Plip extends Creature {
      * that you get this exactly correct.
      */
     public Color color() {
-        g = 63;
+        r = 99;
+        b = 76;
+        g =(int) (96* energy +63);
         return color(r, g, b);
     }
 
@@ -74,7 +104,8 @@ public class Plip extends Creature {
      * private static final variable. This is not required for this lab.
      */
     public void move() {
-        // TODO
+        energy=energy-MoveEnergyLose;
+        if (energy<MinEnergy) energy=MinEnergy;
     }
 
 
@@ -82,7 +113,8 @@ public class Plip extends Creature {
      * Plips gain 0.2 energy when staying due to photosynthesis.
      */
     public void stay() {
-        // TODO
+        energy=energy+StayEnergyGain;
+        if (energy>MaxEnergy) energy=MaxEnergy;
     }
 
     /**
@@ -91,7 +123,9 @@ public class Plip extends Creature {
      * Plip.
      */
     public Plip replicate() {
-        return this;
+        double babyEnergy = energy * repEnergyGiven;
+        energy = energy * repEnergyRetained;
+        return new Plip(babyEnergy);
     }
 
     /**

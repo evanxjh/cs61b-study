@@ -38,6 +38,9 @@ public class GuitarPlayer {
         }
     }
 
+    /**
+     * strings中存储了128个不同的音符，vol[i]控制第i个音符是否起作用
+     */
     private void initialize() {
         strings = new GuitarString[128];
         vol = new double[128];

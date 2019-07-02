@@ -1,14 +1,20 @@
 package creatures;
 
+
+import static huglife.HugLifeUtils.*;
+
+import edu.princeton.cs.algs4.StdRandom;
 import huglife.Creature;
 import huglife.Direction;
 import huglife.Action;
 import huglife.Occupant;
 
+
 import java.awt.Color;
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.Map;
+import java.util.Random;
 
 /**
  * An implementation of a motile pacifist photosynthesizer.
@@ -46,9 +52,6 @@ public class Plip extends Creature {
      */
     private int MinEnergy=0;
     /**
-     * creates plip with energy equal to E.
-     */
-    /**
      * fraction of energy to retain when replicating.
      */
     private double repEnergyRetained = 0.5;
@@ -56,7 +59,9 @@ public class Plip extends Creature {
      * fraction of energy to bestow upon offspring.
      */
     private double repEnergyGiven = 0.5;
-
+    /**
+     * creates plip with energy equal to E.
+     */
     public Plip(double e) {
         super("plip");
         r = 0;
@@ -145,18 +150,31 @@ public class Plip extends Creature {
         // Rule 1
         Deque<Direction> emptyNeighbors = new ArrayDeque<>();
         boolean anyClorus = false;
-        // TODO
         // (Google: Enhanced for-loop over keys of NEIGHBORS?)
-        // for () {...}
-
-        if (false) { // FIXME
-            // TODO
+        for (Direction key:neighbors.keySet()) {
+            if (neighbors.get(key).name().equals("empty")){
+                emptyNeighbors.addLast(key);
+            }
+            if (neighbors.get(key).name().equals("clorus")){
+                anyClorus=true;
+            }
+        }
+        // no empty adjacent space
+        if (emptyNeighbors.size()==0) {
+            return new Action(Action.ActionType.STAY);
+        }
+        // Random direction for Rule 2,3
+        Direction randomdir=randomEntry(emptyNeighbors);
+        // Rule 2
+        if (energy>=1){
+            return new Action(Action.ActionType.REPLICATE,randomdir);
         }
 
-        // Rule 2
-        // HINT: randomEntry(emptyNeighbors)
-
         // Rule 3
+        double pro= StdRandom.uniform();
+        if (pro<0.5 && anyClorus) {
+            return new Action(Action.ActionType.MOVE,randomdir);
+        }
 
         // Rule 4
         return new Action(Action.ActionType.STAY);

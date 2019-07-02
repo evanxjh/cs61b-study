@@ -19,7 +19,7 @@ public class TestArrayRingBuffer {
         arb.dequeue();
         arc.enqueue(2);
         arc.enqueue(3);
-        arc.enqueue(5);
+        arc.enqueue(4);
         arc.dequeue();
         boolean actual=arb.equals(arc);
         assertTrue("different",actual);

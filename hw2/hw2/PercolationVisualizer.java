@@ -22,7 +22,6 @@ import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdDraw;
 
 public class PercolationVisualizer {
-/*
     // delay in miliseconds (controls animation speed)
     private static final int DELAY = 100;
 
@@ -67,7 +66,6 @@ public class PercolationVisualizer {
 
         // turn on animation mode
         StdDraw.show(0);
-
         // repeatedly read in sites to open and draw resulting system
         draw(perc, N);
         StdDraw.show(DELAY);
@@ -83,5 +81,5 @@ public class PercolationVisualizer {
     public static void main(String[] args) {
         String filename = args[0];
         simulateFromFile(filename);
-    }*/
+    }
 }

@@ -40,7 +40,7 @@ public class BST<Key extends Comparable<Key>> {
      */
     public void add(Key key) {
         if (key == null) throw new IllegalArgumentException("calls put() with a null key");
-        root = add(root, key);
+        root = add(root, key,0);
     }
 
     /**
@@ -72,7 +72,7 @@ public class BST<Key extends Comparable<Key>> {
      */
 
     private Node root;             // root of BST
-
+    public int height;
     private class Node {
         private Key key;           // sorted by key
         private Node left, right;  // left and right subtrees
@@ -176,11 +176,14 @@ public class BST<Key extends Comparable<Key>> {
     }
 
 
-    private Node add(Node x, Key key) {
-        if (x == null) return new Node(key, 1);
+    private Node add(Node x, Key key,int h) {
+        if (x == null) {
+            height+=h;
+            return new Node(key, 1);
+        }
         int cmp = key.compareTo(x.key);
-        if      (cmp < 0) x.left  = add(x.left,  key);
-        else if (cmp > 0) x.right = add(x.right, key);
+        if      (cmp < 0) x.left  = add(x.left,  key,h+1);
+        else if (cmp > 0) x.right = add(x.right, key,h+1);
         else              ; // do nothing, key already exists
         x.size = 1 + size(x.left) + size(x.right);
         return x;

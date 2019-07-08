@@ -110,6 +110,23 @@ public class TestBSTMapExtra {
         assertEquals(0, noChild.size());
         assertEquals(null, noChild.get('Z'));
     }
+    /*
+     * test the removemin() and removemax() method
+     */
+    @Test
+    public void testRemoveminmax(){
+        BSTMap<String,String> q = new BSTMap<String,String>();
+        q.put("c","a");
+        q.put("a","n");
+        q.put("b","a");
+        q.put("d","a");
+        q.put("g","m");                         // a b c d e
+        q.put("e","t");
+        assertEquals("n",q.removemin());
+        assertEquals("m",q.removemax());
+        System.out.print("");
+    }
+
 
     public static void main(String[] args) {
         jh61b.junit.TestRunner.runTests(TestBSTMapExtra.class);

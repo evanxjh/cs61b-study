@@ -20,7 +20,7 @@ public class TestComplexOomage {
     /* This should pass if your OomageTestUtility.haveNiceHashCodeSpread
        is correct. This is true even though our given ComplexOomage class
        has a flawed hashCode. */
-    /*@Test
+    @Test
     public void testRandomOomagesHashCodeSpread() {
         List<Oomage> oomages = new ArrayList<>();
         int N = 10000;
@@ -30,20 +30,29 @@ public class TestComplexOomage {
         }
 
         assertTrue(OomageTestUtility.haveNiceHashCodeSpread(oomages, 10));
-    }*/
+    }
 
     /* TODO: Create a list of Complex Oomages called deadlyList
      * that shows the flaw in the hashCode function.
      */
-    /*
+
     @Test
     public void testWithDeadlyParams() {
+        /*
+         * 256，就是二进制中左移8个bits，只要每个params的最后四个数字一样，都会使得hashcode()结果相同
+         */
         List<Oomage> deadlyList = new ArrayList<>();
-
-        // Your code here.
-
+        for (int i = 0; i < 10; i += 1) {
+            ArrayList<Integer> params = new ArrayList<>();
+            params.add(i);
+            for (int j = 0; j < 4; j += 1) {
+                params.add(1);
+            }
+            ComplexOomage com = new ComplexOomage(params);
+            deadlyList.add(com);
+        }
         assertTrue(OomageTestUtility.haveNiceHashCodeSpread(deadlyList, 10));
-    } */
+    }
 
     /** Calls tests for SimpleOomage. */
     public static void main(String[] args) {

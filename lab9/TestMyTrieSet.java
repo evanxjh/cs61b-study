@@ -53,6 +53,20 @@ public class TestMyTrieSet {
             assertFalse(keys.contains(s));
         }
     }
+    // assumes longestPrefixOf works
+    @Test
+    public void longestPrefixOfTest(){
+        String[] saStrings = new String[]{"same", "sam", "sad", "sap","a", "awls", "hello","saps","sapss"};
+        String[] otherStrings = new String[]{"a", "awls", "hello"};
+
+        MyTrieSet t = new MyTrieSet();
+        for (String s: saStrings) {
+            t.add(s);
+        }
+        assertEquals("same",t.longestPrefixOf("same"));
+        assertEquals("sapss",t.longestPrefixOf("sapssd"));
+
+    }
 
     public static void main(String[] args) {
         jh61b.junit.TestRunner.runTests(TestMyTrieSet.class);

@@ -8,6 +8,11 @@ package bearmaps;
  */
 public class ArrayHeapMinPQ<T> implements ExtrinsicMinPQ<T>{
 
+    private int size;
+
+    private class Node{
+
+    }
 
     /**
      * add items into the PQ
@@ -48,7 +53,7 @@ public class ArrayHeapMinPQ<T> implements ExtrinsicMinPQ<T>{
      */
     @Override
     public int size(){
-        return 0;
+        return this.size;
     }
 
     /**

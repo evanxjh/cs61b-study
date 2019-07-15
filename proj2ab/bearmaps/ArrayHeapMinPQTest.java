@@ -81,8 +81,7 @@ public class ArrayHeapMinPQTest {
         System.out.println("Total time elapsed:"+(end-start)/1000.0+"seconds.");
         long start1=System.currentTimeMillis();
         for (int i=0;i<1000;i++){
-            boolean t;
-            t=minheap.contains(i*300);
+            minheap.changePriority(i*300,i*300);
         }
         long end1=System.currentTimeMillis();
         System.out.println("Total time elapsed:"+(end1-start1)/1000.0+"seconds");
@@ -99,8 +98,7 @@ public class ArrayHeapMinPQTest {
         System.out.println("Naive total time elapsed:"+(end2-start2)/1000.0+"seconds.");
         long start3=System.currentTimeMillis();
         for (int i=0;i<1000;i++){
-            boolean t;
-            t=naivepq.contains(i*300);
+           naivepq.changePriority(i*400,i*400);
         }
         long end3=System.currentTimeMillis();
         System.out.println("Naive total time elapsed:"+(end3-start3)/1000.0+"seconds");

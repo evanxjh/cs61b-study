@@ -50,7 +50,7 @@ public class WordGraph implements AStarGraph<String> {
             // j == 0; nw = lev(i - 1, j)
             costs[0] = i;                                                    //只用一个cost[]数组来代替原来二维数组的功能
             int nw = i - 1;
-            for (int j = 1; j <= b.length(); j++) {
+            for (int j = 1; j <= b.length(); j++) {                          //三种情况，择其最小
                 int cj = Math.min(1 + Math.min(costs[j], costs[j - 1]),
                         a.charAt(i - 1) == b.charAt(j - 1) ? nw : nw + 1);
                 nw = costs[j];

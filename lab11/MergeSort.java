@@ -93,7 +93,7 @@ public class MergeSort {
         int length=copy.size();
         Queue<Item> left;
         Queue<Item> right;
-        while (copy.size()>1){                                   //巧妙
+        while (copy.size()>1){                                   //自底向上的归并排序，非递归
             left=copy.dequeue();
             right=copy.dequeue();
             copy.enqueue(mergeSortedQueues(left,right));

@@ -46,9 +46,9 @@ public class WordGraph implements AStarGraph<String> {
         for (int j = 0; j < costs.length; j++) {
             costs[j] = j;
         }
-        for (int i = 1; i <= a.length(); i++) {
+        for (int i = 1; i <= a.length(); i++) {                              //动态规划
             // j == 0; nw = lev(i - 1, j)
-            costs[0] = i;
+            costs[0] = i;                                                    //只用一个cost[]数组来代替原来二维数组的功能
             int nw = i - 1;
             for (int j = 1; j <= b.length(); j++) {
                 int cj = Math.min(1 + Math.min(costs[j], costs[j - 1]),

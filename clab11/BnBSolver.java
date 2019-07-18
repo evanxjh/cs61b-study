@@ -30,6 +30,10 @@ public class BnBSolver {
         bedres=quicksort(bears,beds).getBeds();
     }
 
+    /**
+     * ¸ù¾İĞÜµÄpivot·Ö¶Î£¬Ä¿Ç°ĞÜµÄpivotÈ¡µÄµÚÒ»Ïî£¬¿ÉÔö¼Ó·½·¨È¡Ëæ»úÏî
+     * ·µ»ØÓëĞÜpivot´óĞ¡ÏàµÈµÄbed£¬×÷Îª´²pivot
+     */
     public static Bed partition(List<Bear>bears,List<Bed> beds,Bear pivotbear,List<Bear>bearleft,List<Bear>bearright,List<Bed> bedleft,List<Bed> bedright){
         Bed pivotbed=beds.get(0);
         for (Bed bed:beds){
@@ -46,6 +50,16 @@ public class BnBSolver {
         }
         return  pivotbed;
     }
+    /**
+     *
+     * @param bearleft   ĞÜpivot×ó²àµÄbear
+     * @param pivotbear  ĞÜµÄpivot
+     * @param bearright  ĞÜpivotÓÒ²àµÄbear
+     * @param bedleft    ´²pivot×ó²àµÄbed
+     * @param pivotbed   ´²µÄpivot
+     * @param bedright   ´²pivotÓÒ²àµÄbed
+     * @return           ·Ö±ğ½«bearºÍbedÁ¬½Ó£¬²¢·µ»Ø½áºÏÌå
+     */
     public BnB combine(List<Bear> bearleft,Bear pivotbear,List<Bear> bearright,List<Bed> bedleft,Bed pivotbed,List<Bed> bedright){
         BnB res=new BnB();
         for (Bear bear:bearleft){
@@ -65,19 +79,28 @@ public class BnBSolver {
         return res;
     }
 
+    /**
+     *
+     * @param bears    ´ıÅÅĞòµÄbears
+     * @param beds     ´ıÅÅĞòµÄbeds
+     * @return   bearsºÍbedsµÄ½áºÏÌå
+     */
     public BnB quicksort(List<Bear> bears,List<Bed> beds){
         if (bears.isEmpty() || bears.size()==1) return new BnB(bears,beds);
         List<Bear> bearleft=new ArrayList<>();
         List<Bear> bearright=new ArrayList<>();
         List<Bed> bedleft=new ArrayList<>();
         List<Bed> bedright=new ArrayList<>();
-        Bear pivotbear=bears.get(0);                                  //æš‚æ—¶å–ç¬¬ä¸€ä¸ª
+        Bear pivotbear=bears.get(0);                                  //ÔİÊ±È¡µÚÒ»¸ö
         Bed pivotbed=partition(bears,beds,pivotbear,bearleft,bearright,bedleft,bedright);
         BnB bnbleft=quicksort(bearleft,bedleft);
         BnB bnbright=quicksort(bearright,bedright);
         return combine(bnbleft.getBears(),pivotbear,bnbright.getBears(),bnbleft.getBeds(),pivotbed,bnbright.getBeds());
     }
 
+    /**
+     * ½«bearsºÍbeds½áÎªÒ»Ìå£¬³ÉÎªquicksortµÄ·µ»ØÖµ
+     */
     private class BnB{
         private List<Bear> bears;
         private List<Bed> beds;

@@ -6,7 +6,14 @@ public class TestSortAlgs {
 
     @Test
     public void testQuickSort() {
-
+        Queue<String> tas=new Queue<>();
+        tas.enqueue("Joe");
+        tas.enqueue("Omar");
+        tas.enqueue("Itai");
+        tas.enqueue("Xjh");
+        tas.enqueue("Qrc");
+        tas.enqueue("Woaw");
+        assertTrue(isSorted(QuickSort.quickSort(tas)));
     }
 
     @Test

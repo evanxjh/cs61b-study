@@ -40,7 +40,7 @@ public class BoardGraph implements AStarGraph<Board> {
     private int manhattanDistance(Board b1, Board b2, int n) {
         int b1row = 0;
         int b1col = 0;
-        for (int i = 0; i < b1.size(); i += 1) {
+        for (int i = 0; i < b1.size(); i += 1) {                    //找到b1中n的坐标
             for (int j = 0; j < b1.size(); j += 1) {
                 if (b1.tileAt(i, j) == n) {
                     b1row = i;
@@ -52,7 +52,7 @@ public class BoardGraph implements AStarGraph<Board> {
 
         int b2row = 0;
         int b2col = 0;
-        for (int i = 0; i < b2.size(); i += 1) {
+        for (int i = 0; i < b2.size(); i += 1) {                    //找到b2中n的坐标
             for (int j = 0; j < b2.size(); j += 1) {
                 if (b2.tileAt(i, j) == n) {
                     b2row = i;
